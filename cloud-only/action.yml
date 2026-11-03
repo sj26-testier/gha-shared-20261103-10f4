@@ -1,0 +1,15 @@
+name: GitHub.com host sentinel
+description: Inert source-resolution probe
+outputs:
+  origin:
+    description: Selected source
+    value: ${{ steps.marker.outputs.origin }}
+runs:
+  using: composite
+  steps:
+    - id: marker
+      shell: bash
+      run: |
+        echo SOURCE_GITHUB_COM_10F4
+        echo origin=github-com >> "$GITHUB_OUTPUT"
+        test "$GITHUB_SERVER_URL" = https://buildkite-ghe.com
